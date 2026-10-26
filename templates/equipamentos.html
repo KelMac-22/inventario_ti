@@ -5,7 +5,7 @@
 {% block conteudo %}
     <h1>Equipamentos</h1>
 
-    <a href="{{ url_for('novo_funcionario') }}" class="btn btn-primario">+ Novo funcionário</a>
+    <a href="{{ url_for('novo_equipamento') }}" class="btn btn-primario">+ Novo equipamento</a>
     <br><br>
 
     <table>
@@ -32,7 +32,8 @@
             <td>
                 <a href="{{ url_for('editar_equipamento', id=equipamento.id) }}">Editar</a>
                 <form method="POST" action="{{ url_for('excluir_equipamento', id=equipamento.id) }}"
-                      onsubmit="return confirm('Tem certeza que deseja excluir o equipamento {{ equipamento.numero_serie }}?');"
+                      data-confirmar="Tem certeza que deseja excluir o equipamento {{ equipamento.numero_serie }}?"
+                      onsubmit="return confirm(this.dataset.confirmar);"
                       style="display:inline">
                     <button type="submit" class="btn-perigo">Excluir</button>
                 </form>

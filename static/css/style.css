@@ -372,3 +372,26 @@ select:focus {
 @media (prefers-reduced-motion: reduce) {
     .icones-flutuantes i { animation: none; }
 }
+
+/* ========== MENSAGENS ========== */
+.alerta {
+    padding: 14px 18px;
+    margin-bottom: 24px;
+    background: var(--painel);
+    border: 1px solid;
+    border-radius: var(--raio);
+    font-size: 14px;
+}
+
+.alerta-sucesso {
+    color: var(--verde);
+    border-color: var(--verde);
+}
+
+.alerta-erro {
+    color: var(--rosa);
+    border-color: var(--rosa);
+}
+
+.alerta-sucesso::before { content: "✓  "; }
+.alerta-erro::before    { content: "✕  "; }

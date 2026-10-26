@@ -25,7 +25,7 @@
         <input type="date" name="data_entrega" value="{{ hoje }}" required><br><br>
 
         <label>Observação:</label><br>
-        <input type="text" name="observacao"><br><br>
+        <input type="text" name="observacao" maxlength="255"><br><br>
 
         <button type="submit">Registrar empréstimo</button>
         <a href="{{ url_for('listar_emprestimos') }}">Cancelar</a>

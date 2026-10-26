@@ -7,16 +7,16 @@
 
    <form method="POST" class="formulario">
         <label>Nº de Série:</label><br>
-        <input type="text" name="numero_serie" value="{{ equipamento.numero_serie if equipamento }}" required><br><br>
+        <input type="text" name="numero_serie" maxlength="50" value="{{ equipamento.numero_serie if equipamento }}" required><br><br>
 
         <label>Tipo:</label><br>
-        <input type="text" name="tipo" value="{{ equipamento.tipo if equipamento }}" required><br><br>
+        <input type="text" name="tipo" maxlength="50" value="{{ equipamento.tipo if equipamento }}" required><br><br>
 
         <label>Marca:</label><br>
-        <input type="text" name="marca" value="{{ equipamento.marca if equipamento }}"><br><br>
+        <input type="text" name="marca" maxlength="50" value="{{ equipamento.marca if equipamento }}"><br><br>
 
         <label>Modelo:</label><br>
-        <input type="text" name="modelo" value="{{ equipamento.modelo if equipamento }}"><br><br>
+        <input type="text" name="modelo" maxlength="50" value="{{ equipamento.modelo if equipamento }}"><br><br>
 
         <label>Status:</label><br>
         <select name="status">

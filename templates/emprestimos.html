@@ -5,7 +5,7 @@
 {% block conteudo %}
     <h1>Empréstimos</h1>
 
-    <a href="{{ url_for('novo_funcionario') }}" class="btn btn-primario">+ Novo funcionário</a>
+    <a href="{{ url_for('novo_emprestimo') }}" class="btn btn-primario">+ Novo empréstimo</a>
     <br><br>
 
     <table>
@@ -40,7 +40,8 @@
             <td>
                 {% if not emp.data_devolucao %}
                 <form method="POST" action="{{ url_for('devolver_emprestimo', id=emp.id) }}"
-                      onsubmit="return confirm('Confirmar a devolução de {{ emp.tipo }} {{ emp.modelo }}?');"
+                      data-confirmar="Confirmar a devolução de {{ emp.tipo }} {{ emp.modelo }}?"
+                      onsubmit="return confirm(this.dataset.confirmar);"
                       style="display:inline">
                     <button type="submit" class="btn-sucesso">Devolver</button>
                 </form>

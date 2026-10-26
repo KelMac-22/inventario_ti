@@ -28,7 +28,8 @@
             <td>
                 <a href="{{ url_for('editar_funcionario', id=funcionario.id) }}">Editar</a>
                 <form method="POST" action="{{ url_for('excluir_funcionario', id=funcionario.id) }}"
-                      onsubmit="return confirm('Tem certeza que deseja excluir {{ funcionario.nome }}?');"
+                      data-confirmar="Tem certeza que deseja excluir {{ funcionario.nome }}?"
+                      onsubmit="return confirm(this.dataset.confirmar);"
                       style="display:inline">
                     <button type="submit" class="btn-perigo">Excluir</button>
                 </form>

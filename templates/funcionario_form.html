@@ -7,16 +7,16 @@
 
    <form method="POST" class="formulario">
         <label>Nome:</label><br>
-        <input type="text" name="nome" value="{{ funcionario.nome if funcionario }}" required><br><br>
+        <input type="text" name="nome" maxlength="100" value="{{ funcionario.nome if funcionario }}" required><br><br>
 
         <label>E-mail:</label><br>
-        <input type="email" name="email" value="{{ funcionario.email if funcionario }}" required><br><br>
+        <input type="email" name="email" maxlength="100" value="{{ funcionario.email if funcionario }}" required><br><br>
 
         <label>Departamento:</label><br>
-        <input type="text" name="departamento" value="{{ funcionario.departamento if funcionario }}"><br><br>
+        <input type="text" name="departamento" maxlength="50" value="{{ funcionario.departamento if funcionario }}"><br><br>
 
         <label>Cargo:</label><br>
-        <input type="text" name="cargo" value="{{ funcionario.cargo if funcionario }}"><br><br>
+        <input type="text" name="cargo" maxlength="50" value="{{ funcionario.cargo if funcionario }}"><br><br>
 
         <button type="submit">Salvar</button>
         <a href="{{ url_for('listar_funcionarios') }}">Cancelar</a>
