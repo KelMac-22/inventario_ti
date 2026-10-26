@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}TechNova{% endblock %} - Inventário de TI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="topo">
+        <a href="{{ url_for('inicio') }}" class="logo">TechNova</a>
+        <nav class="menu">
+            <a href="{{ url_for('inicio') }}">Início</a>
+            <a href="{{ url_for('listar_funcionarios') }}">Funcionários</a>
+            <a href="{{ url_for('listar_equipamentos') }}">Equipamentos</a>
+            <a href="{{ url_for('listar_emprestimos') }}">Empréstimos</a>
+        </nav>
+    </header>
+
+    <main class="conteudo">
+        {% block conteudo %}{% endblock %}
+    </main>
+
+    <footer class="rodape">Sistema de Inventário de TI · TechNova</footer>
+</body>
+</html>

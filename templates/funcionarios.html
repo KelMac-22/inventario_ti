@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block titulo %}Funcionários{% endblock %}
+
+{% block conteudo %}
+    <h1>Funcionários</h1>
+
+    <a href="{{ url_for('novo_funcionario') }}" class="btn btn-primario">+ Novo funcionário</a>
+    <br><br>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Departamento</th>
+            <th>Cargo</th>
+            <th>Ações</th>
+        </tr>
+
+        {% for funcionario in funcionarios %}
+        <tr>
+            <td>{{ funcionario.id }}</td>
+            <td>{{ funcionario.nome }}</td>
+            <td>{{ funcionario.email }}</td>
+            <td>{{ funcionario.departamento }}</td>
+            <td>{{ funcionario.cargo }}</td>
+            <td>
+                <a href="{{ url_for('editar_funcionario', id=funcionario.id) }}">Editar</a>
+                <form method="POST" action="{{ url_for('excluir_funcionario', id=funcionario.id) }}"
+                      onsubmit="return confirm('Tem certeza que deseja excluir {{ funcionario.nome }}?');"
+                      style="display:inline">
+                    <button type="submit" class="btn-perigo">Excluir</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

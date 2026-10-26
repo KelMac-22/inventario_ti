@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block titulo %}Equipamento{% endblock %}
+
+{% block conteudo %}
+    <h1>{{ "Editar Equipamento" if equipamento else "Novo Equipamento" }}</h1>
+
+   <form method="POST" class="formulario">
+        <label>Nº de Série:</label><br>
+        <input type="text" name="numero_serie" value="{{ equipamento.numero_serie if equipamento }}" required><br><br>
+
+        <label>Tipo:</label><br>
+        <input type="text" name="tipo" value="{{ equipamento.tipo if equipamento }}" required><br><br>
+
+        <label>Marca:</label><br>
+        <input type="text" name="marca" value="{{ equipamento.marca if equipamento }}"><br><br>
+
+        <label>Modelo:</label><br>
+        <input type="text" name="modelo" value="{{ equipamento.modelo if equipamento }}"><br><br>
+
+        <label>Status:</label><br>
+        <select name="status">
+            {% for opcao in ['disponivel', 'em_uso', 'manutencao', 'descartado'] %}
+            <option value="{{ opcao }}" {% if equipamento and equipamento.status == opcao %}selected{% endif %}>
+                {{ opcao }}
+            </option>
+            {% endfor %}
+        </select><br><br>
+
+        <label>Data de aquisição:</label><br>
+        <input type="date" name="data_aquisicao" value="{{ equipamento.data_aquisicao if equipamento and equipamento.data_aquisicao }}"><br><br>
+
+        <button type="submit">Salvar</button>
+        <a href="{{ url_for('listar_equipamentos') }}">Cancelar</a>
+    </form>
+{% endblock %}

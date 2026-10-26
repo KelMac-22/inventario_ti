@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block titulo %}Novo Empréstimo{% endblock %}
+
+{% block conteudo %}
+    <h1>Novo Empréstimo</h1>
+
+    {% if equipamentos %}
+    <form method="POST" class="formulario">
+        <label>Funcionário:</label><br>
+        <select name="funcionario_id" required>
+            {% for f in funcionarios %}
+            <option value="{{ f.id }}">{{ f.nome }} ({{ f.departamento }})</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label>Equipamento disponível:</label><br>
+        <select name="equipamento_id" required>
+            {% for e in equipamentos %}
+            <option value="{{ e.id }}">{{ e.tipo }} {{ e.marca }} {{ e.modelo }} - {{ e.numero_serie }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label>Data de entrega:</label><br>
+        <input type="date" name="data_entrega" value="{{ hoje }}" required><br><br>
+
+        <label>Observação:</label><br>
+        <input type="text" name="observacao"><br><br>
+
+        <button type="submit">Registrar empréstimo</button>
+        <a href="{{ url_for('listar_emprestimos') }}">Cancelar</a>
+    </form>
+    {% else %}
+    <p>Nenhum equipamento disponível para empréstimo no momento.</p>
+    <a href="{{ url_for('listar_emprestimos') }}">Voltar</a>
+    {% endif %}
+{% endblock %}

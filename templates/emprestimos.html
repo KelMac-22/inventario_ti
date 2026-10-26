@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block titulo %}Empréstimos{% endblock %}
+
+{% block conteudo %}
+    <h1>Empréstimos</h1>
+
+    <a href="{{ url_for('novo_funcionario') }}" class="btn btn-primario">+ Novo funcionário</a>
+    <br><br>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Funcionário</th>
+            <th>Departamento</th>
+            <th>Equipamento</th>
+            <th>Nº de Série</th>
+            <th>Entrega</th>
+            <th>Situação</th>
+            <th>Observação</th>
+            <th>Ações</th>
+        </tr>
+
+        {% for emp in emprestimos %}
+        <tr>
+            <td>{{ emp.id }}</td>
+            <td>{{ emp.nome }}</td>
+            <td>{{ emp.departamento }}</td>
+            <td>{{ emp.tipo }} {{ emp.marca }} {{ emp.modelo }}</td>
+            <td>{{ emp.numero_serie }}</td>
+            <td>{{ emp.data_entrega.strftime('%d/%m/%Y') }}</td>
+            <td>
+                {% if emp.data_devolucao %}
+                    Devolvido em {{ emp.data_devolucao.strftime('%d/%m/%Y') }}
+                {% else %}
+                    Ativo
+                {% endif %}
+            </td>
+            <td>{{ emp.observacao or '-' }}</td>
+            <td>
+                {% if not emp.data_devolucao %}
+                <form method="POST" action="{{ url_for('devolver_emprestimo', id=emp.id) }}"
+                      onsubmit="return confirm('Confirmar a devolução de {{ emp.tipo }} {{ emp.modelo }}?');"
+                      style="display:inline">
+                    <button type="submit" class="btn-sucesso">Devolver</button>
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

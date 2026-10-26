@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block titulo %}Início{% endblock %}
+
+{% block conteudo %}
+    <section class="hero">
+        <canvas id="rede"></canvas>
+
+        <div class="icones-flutuantes" aria-hidden="true">
+            <i class="ti ti-device-laptop"></i>
+            <i class="ti ti-device-desktop"></i>
+            <i class="ti ti-server"></i>
+            <i class="ti ti-router"></i>
+            <i class="ti ti-printer"></i>
+            <i class="ti ti-device-mobile"></i>
+            <i class="ti ti-cpu"></i>
+            <i class="ti ti-robot"></i>
+        </div>
+
+        <div class="hero-texto">
+            <span class="tag">• Inventário de TI</span>
+            <h1>Controle total dos ativos da TechNova</h1>
+            <p>Funcionários, equipamentos e empréstimos em um só lugar.</p>
+            <a href="{{ url_for('novo_emprestimo') }}" class="btn btn-primario">Novo empréstimo</a>
+            <a href="{{ url_for('listar_equipamentos') }}" class="btn">Ver equipamentos</a>
+        </div>
+    </section>
+
+    <section class="cards">
+        <div class="card">
+            <span class="card-label">Funcionários</span>
+            <strong>{{ resumo.funcionarios }}</strong>
+        </div>
+        <div class="card">
+            <span class="card-label">Equipamentos</span>
+            <strong>{{ resumo.equipamentos }}</strong>
+        </div>
+        <div class="card">
+            <span class="card-label">Disponíveis</span>
+            <strong class="numero-verde">{{ resumo.disponiveis }}</strong>
+        </div>
+        <div class="card card-destaque">
+            <span class="card-label">Empréstimos ativos</span>
+            <strong>{{ resumo.emprestimos_ativos }}</strong>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/fundo.js') }}"></script>
+{% endblock %}

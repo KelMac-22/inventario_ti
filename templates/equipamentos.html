@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block titulo %}Equipamentos{% endblock %}
+
+{% block conteudo %}
+    <h1>Equipamentos</h1>
+
+    <a href="{{ url_for('novo_funcionario') }}" class="btn btn-primario">+ Novo funcionário</a>
+    <br><br>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nº de Série</th>
+            <th>Tipo</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Status</th>
+            <th>Aquisição</th>
+            <th>Ações</th>
+        </tr>
+
+        {% for equipamento in equipamentos %}
+        <tr>
+            <td>{{ equipamento.id }}</td>
+            <td>{{ equipamento.numero_serie }}</td>
+            <td>{{ equipamento.tipo }}</td>
+            <td>{{ equipamento.marca }}</td>
+            <td>{{ equipamento.modelo }}</td>
+            <td><span class="status status-{{ equipamento.status }}">{{ equipamento.status }}</span></td>
+            <td>{{ equipamento.data_aquisicao.strftime('%d/%m/%Y') if equipamento.data_aquisicao else '-' }}</td>
+            <td>
+                <a href="{{ url_for('editar_equipamento', id=equipamento.id) }}">Editar</a>
+                <form method="POST" action="{{ url_for('excluir_equipamento', id=equipamento.id) }}"
+                      onsubmit="return confirm('Tem certeza que deseja excluir o equipamento {{ equipamento.numero_serie }}?');"
+                      style="display:inline">
+                    <button type="submit" class="btn-perigo">Excluir</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
