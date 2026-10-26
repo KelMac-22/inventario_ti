@@ -14,4 +14,4 @@ O que mais aprendi:
 
 Tecnologias: Python, Flask, MySQL, HTML, CSS e JavaScript.
 
-O código está no meu GitHub (link nos comentários). Feedbacks são muito bem-vindos!
+
